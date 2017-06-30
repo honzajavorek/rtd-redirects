@@ -1,0 +1,17 @@
+sudo: false
+language: "python"
+cache: "pip"
+python:
+  - "3.6"
+env:
+  global:  # 'travis encrypt PYPI_PASSWORD=... GH_TOKEN=...'
+    - PYPI_USERNAME=honzajavorek
+    - secure: "SKoDJBn0qzzs2pVyAse8T+PXC++m19Cn5js3Nk/UTmajyqy7gNsDs5Y+tPmO7cftptzCUoQ8RO1Jjz75nxE3IfZc2A1jzb0SBCukOevryJoTS2Upc7ipXjP26fPfOOQfaI49/lcqfK90VHrL5u0R01yvQo4hfhB2mH1uplK0RxGThNi/ra+K1xYvOMSRBWnpnuf8G8hkeCCNSSGEf+lSgJMHskab6jZgiLfBmghtouQRpBKEkm1wPLhikFwfTUrz5GXCkWh7yCXuIh0cy0x/57zS2MqTlyTeecVKzs6yKn8l1K0x9RFaSvsjjzxbuVavtp+m0ajSTEQjM3MEmfNpkhSBNvv5MkGixZ7mx+hdcIFxzhHiuGwTBvgj0cXSnE/sbgz7vu8SSp0owPdUTaTiBM8Z6APGyidwNy13CV4aL0EhXWYQ7YhH28titQPRM1b6cbwyFjzvjtnVQCFbNlu55zsVjtVE/6Gbvr1QRVP2zYEPsHwdk+G+UhHYuT22KC2cYomlCP+tYnO0L2vw3365ae1A5qg2M6GamzgI/R/xaucKznhp0ZH/RaycjwgVpuvPg8WakMrJX+B1mTi4fmo2rpCJQQZdb1XxkP7IqgVInEfCzm0Sl2wGL1ad1RxG/zqDgk9tl0FkOJNPbnYzgL2EbJ3+5jKjirEaAdVieAOrd1w="
+install:
+  - "pip install -e .[tests,release]"
+script:
+  - "flake8"
+after_success:
+  - "git config user.name 'Honza Javorek'"
+  - "git config user.email 'mail@honzajavorek.cz'"
+  - "python setup.py publish"
