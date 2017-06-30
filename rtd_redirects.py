@@ -46,7 +46,7 @@ def login(session, username, password):
     res = session.post(form.get('action'), data=fields)
     res.raise_for_status()
 
-    if res.url != 'https://readthedocs.org/dashboard/':
+    if 'readthedocs.org/dashboard' not in res.url:
         raise ValueError('Invalid username or password')
 
 
