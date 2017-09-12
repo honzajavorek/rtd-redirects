@@ -3,7 +3,7 @@ rtd-redirects
 
 |PyPI version| |Build Status|
 
-Manage redirects in the `ReadTheDocs <http://readthedocs.org/>`__ admin, programmatically.
+Manage redirects in the `ReadTheDocs <http://readthedocs.org/>`__ admin, programmatically. Addressing the `rtfd/readthedocs.org#2904 <https://github.com/rtfd/readthedocs.org/issues/2904>`__ issue.
 
 Installation
 ------------
