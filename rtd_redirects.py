@@ -3,32 +3,34 @@ import yaml
 import requests
 from lxml import html
 
-
 @click.command()
 @click.argument('project-name')
 @click.argument('redirects-filename', type=click.File())
+@click.option('--free', 'rtd_ext', flag_value='.org', default=True)
+@click.option('--pro', 'rtd_ext', flag_value='.com')
 @click.option('--username', prompt=True,
               help='ReadTheDocs username')
 @click.option('--password', prompt=True, hide_input=True,
               help='ReadTheDocs password')
-def main(project_name, redirects_filename, username, password):
+def main(project_name, redirects_filename, rtd_ext, username, password):
+    rtd_url = f"https://readthedocs{rtd_ext}"
     session = requests.Session()
-    login(session, username, password)
+    login(session, rtd_url, username, password)
 
-    url = f'https://readthedocs.org/dashboard/{project_name}/redirects/'
+    url = f'{rtd_url}/dashboard/{project_name}/redirects/'
     res = session.get(url)
     res.raise_for_status()
     html_tree = html.fromstring(res.content)
     html_tree.make_links_absolute(res.url)
 
-    redirects = yaml.load(redirects_filename.read()).get('redirects')
+    redirects = yaml.safe_load(redirects_filename.read()).get('redirects')
     for src_path, dst_path in redirects.items():
         remove_existing(session, html_tree, src_path)
         create(session, html_tree, src_path, dst_path)
 
 
-def login(session, username, password):
-    login_url = 'https://readthedocs.org/accounts/login/'
+def login(session, rtd_url, username, password):
+    login_url = f'{rtd_url}/accounts/login/'
     session.headers.update({'referer': login_url})
 
     res = session.get(login_url)
@@ -46,14 +48,16 @@ def login(session, username, password):
     res = session.post(form.get('action'), data=fields)
     res.raise_for_status()
 
-    if 'readthedocs.org/dashboard' not in res.url:
+    if f'{rtd_url}/dashboard' not in res.url:
         raise ValueError('Invalid username or password')
 
 
 def remove_existing(session, html_tree, src_path):
     for li in html_tree.cssselect('li'):
-        text = (li.text_content() or '').strip()
-        if f'Page Redirect: {src_path} ->' in text:
+        if li.text_content() in (None, ''):
+            continue
+        text = " ".join(li.text_content().split())
+        if f'{src_path} ->' in text:
             original_redirect = text.replace('Page Redirect: ', '')
             print(f'[remove] {original_redirect}')
             form = li.cssselect('form')[0]
