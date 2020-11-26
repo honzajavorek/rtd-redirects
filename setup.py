@@ -1,6 +1,7 @@
 from setuptools import setup
 
 
+version = '1.0.1'
 install_requires = [
     'requests',
     'lxml',
@@ -15,7 +16,7 @@ tests_require = [
 
 setup(
     name='rtd-redirects',
-    version='1.0.1',
+    version=version,
     description='Manage redirects in the ReadTheDocs admin, programmatically',
     long_description=open('README.rst').read(),
     author='Honza Javorek',
