@@ -35,14 +35,14 @@ Only **page redirects** are supported at the moment. The format of the file is a
 .. code:: yaml
 
     redirects:
-      # Following redirects have to be done because we've migrated from MkDocs to Sphinx
+      # we've migrated from MkDocs to Sphinx
       "/example/": "/example.html"
       "/python/": "/python.html"
 
-      # Following pages has been removed in favor of sections
+      # page removed in favor of section
       "/green.html": "/colors.html#green"
 
-      # Following redirects are only for convenience
+      # only for convenience
       "/praha.html": "/prague.html"
 
 Why `YAML <https://en.wikipedia.org/wiki/YAML>`__? Because it's easy to read by humans, easy to write by humans, and above all, it has support for comments. Redirects are *corrections* and you should document why they're necessary.
