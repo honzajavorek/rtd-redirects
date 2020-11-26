@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - uses: relekang/python-semantic-release@7
+    - uses: relekang/python-semantic-release@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         pypi_token: ${{ secrets.PYPI_TOKEN }}
