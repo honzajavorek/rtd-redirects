@@ -1,15 +1,4 @@
-import sys
 from setuptools import setup
-
-try:
-    from semantic_release import setup_hook
-    setup_hook(sys.argv)
-except ImportError:
-    message = "Unable to locate 'semantic_release', releasing won't work"
-    print(message, file=sys.stderr)
-
-
-version = '1.0.1'
 
 
 install_requires = [
@@ -22,14 +11,11 @@ install_requires = [
 tests_require = [
     'flake8'
 ]
-release_requires = [
-    'python-semantic-release',
-]
 
 
 setup(
     name='rtd-redirects',
-    version=version,
+    version='1.0.1',
     description='Manage redirects in the ReadTheDocs admin, programmatically',
     long_description=open('README.rst').read(),
     author='Honza Javorek',
@@ -41,7 +27,6 @@ setup(
     tests_require=tests_require,
     extras_require={
         'tests': tests_require,
-        'release': release_requires,
     },
     entry_points={
         'console_scripts': [
