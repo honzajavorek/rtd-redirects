@@ -1,8 +1,6 @@
 rtd-redirects
 =============
 
-|PyPI version| |Build Status|
-
 Manage redirects in the `ReadTheDocs <http://readthedocs.org/>`__ admin, programmatically. Addressing the `rtfd/readthedocs.org#2904 <https://github.com/rtfd/readthedocs.org/issues/2904>`__ issue.
 
 Installation
@@ -54,8 +52,3 @@ License: MIT
 
 This work is licensed under `MIT
 license <https://en.wikipedia.org/wiki/MIT_License>`__.
-
-.. |PyPI version| image:: https://badge.fury.io/py/rtd-redirects.svg
-   :target: https://badge.fury.io/py/rtd-redirects
-.. |Build Status| image:: https://travis-ci.org/honzajavorek/rtd-redirects.svg?branch=master
-   :target: https://travis-ci.org/honzajavorek/rtd-redirects
