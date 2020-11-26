@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "rtd-redirects"
+version = "1.0.1"
+description = "Manage redirects in the ReadTheDocs admin, programmatically"
+authors = ["Honza Javorek <mail@honzajavorek.cz>"]
+license = "MIT"
+readme = "README.rst"
+repository = "https://github.com/honzajavorek/rtd-redirects"
+include = ["LICENSE"]
+classifiers=[
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Documentation",
+    "Topic :: Documentation :: Sphinx",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Internet",
+]
+keywords = ["readthedocs", "documentation", "redirects", "sphinx", "mkdocs"]
+
+[tool.poetry.scripts]
+rtd-redirects = "rtd_redirects:main"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+requests = "^2.25.0"
+lxml = "^4.6.1"
+cssselect = "^1.1.0"
+click = "^7.1.2"
+pyaml = "^20.4.0"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^3.8.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
