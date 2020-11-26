@@ -45,6 +45,19 @@ Only **page redirects** are supported at the moment. The format of the file is a
 
 Why `YAML <https://en.wikipedia.org/wiki/YAML>`__? Because it's easy to read by humans, easy to write by humans, and above all, it has support for comments. Redirects are *corrections* and you should document why they're necessary.
 
+
+Usage with ReadTheDocs PRO
+--------------------------
+
+If you are using a commercial edition of the RTD (from ``readthedocs.com`` instead of ``readthedocs.org``), please specify ``--pro`` flag in the command, like this
+
+.. code:: sh
+
+    $ rtd-redirects project-name ./redirects.yml --username=honzajavorek --pro
+
+There is also an opposite flag ``--free`` which is added by default, so can be omitted
+
+
 License: MIT
 ------------
 
