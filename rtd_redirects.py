@@ -3,6 +3,7 @@ import yaml
 import requests
 from lxml import html
 
+
 @click.command()
 @click.argument('project-name')
 @click.argument('redirects-filename', type=click.File())
